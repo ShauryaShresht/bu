@@ -25,11 +25,6 @@ jobs:
     - name: Set GCP Project
       run: gcloud config set project cloudside-academy
 
-    - name: Install kubectl
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y kubectl
-
     - name: Get GKE credentials
       run: gcloud container clusters get-credentials ga-gke-ss-46 --zone us-central1-c --project cloudside-academy
 
