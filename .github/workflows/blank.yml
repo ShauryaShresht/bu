@@ -19,7 +19,19 @@ jobs:
 
       - name: Set up Google Cloud SDK
         run: |
+          # Remove existing Google Cloud SDK sources
+          sudo rm -f /etc/apt/sources.list.d/google-cloud-sdk.list
+          
+          # Add new Google Cloud SDK source
+          echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
+          
+          # Download and add the GPG key
+          curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | gpg --dearmor | sudo tee /usr/share/keyrings/cloud.google.gpg > /dev/null
+          
+          # Update package list
           sudo apt-get update
+          
+          # Install necessary packages
           sudo apt-get install -y google-cloud-sdk-gke-gcloud-auth-plugin
 
       - name: Set GCP Project
