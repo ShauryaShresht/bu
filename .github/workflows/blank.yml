@@ -43,7 +43,7 @@ jobs:
 
       - name: Get GKE credentials
         run: |
-         sudo gcloud container clusters get-credentials ga-gke-ss-46 --zone us-central1-c --project cloudside-academy
+         sudo gcloud container clusters get-credentials velero-cluster --zone us-central1-a --project cloudside-academy
 
       - name: Deploy to GKE
         run: |
